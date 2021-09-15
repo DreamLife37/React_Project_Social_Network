@@ -3,7 +3,8 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+  
   return (
     <div>
       My Posts
@@ -11,10 +12,8 @@ const MyPosts = () => {
         <textarea></textarea>
         <button>Add</button>
       </div>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      <Post message='Hi, how are you' likeCount='5'/>
+      <Post message="It's my first post" likeCount='10'/>
     </div>
   )
 
