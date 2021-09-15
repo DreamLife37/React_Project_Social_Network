@@ -14,23 +14,7 @@
 
 
 
-.header {
-  grid-area: h; 
-  background-color:rgb(196, 209, 8);
-}
 
-.header img {
-  width: 150px;
-}
 
-.nav {
-  grid-area: n;
-  background-color: burlywood;
 
-}
 
-.content {
-  grid-area: c;
-  background-color: rgb(235, 197, 115);
-
-}
