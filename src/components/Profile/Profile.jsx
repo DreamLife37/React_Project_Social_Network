@@ -1,17 +1,16 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import s from './Profile.module.css';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 const Profile = () => {
-    return  <div>
-       <div><img src='https://union-travel.ru/assets/images/country/thailand/resorts/beach1.jpg'></img>
-    </div>
+  return (
     <div>
-      ava+descriprion
+      <ProfileInfo />
+      <MyPosts />
     </div>
-    <MyPosts />
-  </div>
+  )
 }
 
 export default Profile;

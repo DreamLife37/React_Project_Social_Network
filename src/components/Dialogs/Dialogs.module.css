@@ -17,6 +17,12 @@
 
 }
 
+
+.dialogsItems a {
+  color: white;
+  text-decoration: none;
+}
+
 .messages .message {
 
 }

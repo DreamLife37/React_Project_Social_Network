@@ -4,21 +4,16 @@
 
   width: 1200px;
 
-  grid-template-areas: 
-  "h h"
-  "n c";
+  grid-template-areas:
+    "h h"
+    "n c";
 
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
 }
 
 .app-wrapper-content {
-    grid-area: c;
-    background-color: rgb(235, 197, 115);
+  grid-area: c;
+  background-color: rgb(235, 197, 115);
+
 }
-
-
-
-
-
-
