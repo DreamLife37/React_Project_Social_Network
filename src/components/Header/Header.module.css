@@ -1,8 +1,16 @@
 .header {
     grid-area: h; 
-    background-color:rgb(196, 209, 8);
+    background-color:#279CEB 
   }
   
 .header img {
   width: 150px;
+}
+
+.logo {
+  float: left;
+  font-family: Open Sans Condensed, sans-serif;
+  font-size: 20px;
+  line-height: 35px;
+  margin-left: 20px;
 }
