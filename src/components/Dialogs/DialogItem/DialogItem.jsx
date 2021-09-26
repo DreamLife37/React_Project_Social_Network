@@ -5,7 +5,7 @@ import s from './../Dialogs.module.css';
 const DialogItem = (props) => {
     return (
         <div className={s.dialog + ' ' + s.active}>
-            <NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink>
+            <NavLink to={'/dialogs/' + props.id}><div>{<img src={props.avatar}/>}</div>{props.name}</NavLink>
         </div>
     )
 }

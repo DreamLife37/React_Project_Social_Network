@@ -1,7 +1,7 @@
 .nav {
     grid-area: n;
     background-color: #24282C;
-    padding: 20px;
+    padding: 10px;
 }
 
 .item a {
@@ -12,3 +12,8 @@
 .item a.activeLink {
     color: gold;
 }
+
+
+.friend {
+    float: left;
+ }

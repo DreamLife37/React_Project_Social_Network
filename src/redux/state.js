@@ -15,11 +15,31 @@
         { id: 3, message: 'Yo' }
       ],
       dialogs: [
-        { id: 1, name: 'Andrey' },
-        { id: 2, name: 'Dimych' },
-        { id: 3, name: 'Aleksey' }
+        { id: 1, name: 'Andrey2', avatar: 'https://avavatar.ru/images/original/8/Q7OMzfTjG5ubGQx6.jpg' },
+        { id: 2, name: 'Dimych', avatar: 'https://avavatar.ru/images/original/1/TEFNRLzxxtrA8205.jpg'},
+        { id: 3, name: 'Aleksey', avatar: 'https://avavatar.ru/images/full/1/wgS4KQ8MVxQktf3k.jpg'}
       ]
-    } 
+    
+    },
+    
+    sidebar: {
+      friends: [
+      { id: 1, name: 'Andrey1', avatar: 'https://avavatar.ru/images/original/8/Q7OMzfTjG5ubGQx6.jpg' },
+      { id: 2, name: 'Dimych', avatar: 'https://avavatar.ru/images/original/1/TEFNRLzxxtrA8205.jpg'},
+      { id: 3, name: 'Aleksey', avatar: 'https://avavatar.ru/images/full/1/wgS4KQ8MVxQktf3k.jpg'}
+    ]
+  }
+
+  }
+
+  export let addPost = (postMessage) => {
+    debugger;
+    let newPost = {
+      id: 5,
+      post: postMessage,
+      likesCount: 0
+    };
+    state.profilePage.posts.push(newPost);
   }
 
   export default state;

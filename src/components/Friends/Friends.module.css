@@ -1,0 +1,15 @@
+.friends img {
+    width: 70px;
+    border-radius: 120px;
+  }
+
+  .friends {
+    color: white;
+    text-decoration: none;
+    
+    float: left;
+ }
+
+ .friend {
+    float: left;
+ }
