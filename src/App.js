@@ -26,14 +26,22 @@ const App = (props) => {
         <Route path='/settings' component={Settings}/>
         
         <Route path='/dialogs' 
-               render={ () => <Dialogs 
+              render={ () => <Dialogs 
                   /* dialogs={props.state.dialogsPage.dialogs} 
                   messages={props.state.dialogsPage.messages}/>}/> ниже более компактная запись */
+                  dialogs={props.state.dialogsPage.dialogs}
+                  messages={props.state.dialogsPage.messages} 
+                  newMessageText={props.state.dialogsPage.newMessageText}
+                  addMessage={props.addMessage}
+                  updateNewMessageText={props.updateNewMessageText}
+              />}/>
 
-                  state={props.state.dialogsPage} />}/>
         <Route path='/profile' 
-               render={ () => <Profile
-                  state={props.state.profilePage} addPost={props.addPost}/>}/>
+              render={ () => <Profile
+                  profilePage={props.state.profilePage} 
+                  addPost={props.addPost}
+                  updateNewPostText={props.updateNewPostText}
+              />}/>
            
         </div>
       </div>
