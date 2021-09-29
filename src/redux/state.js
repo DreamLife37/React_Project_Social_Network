@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from "../render";
+let rerenderEntireTree = () => {
+  console.log('State is changed');
+}
 
   let state = {
     profilePage: {
@@ -73,6 +75,10 @@ import { rerenderEntireTree } from "../render";
   export let updateNewMessageText = (newTextMessage) => {
     state.dialogsPage.newMessageText = newTextMessage;
     rerenderEntireTree(state);
+  }
+
+  export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
   }
 
   export default state;
