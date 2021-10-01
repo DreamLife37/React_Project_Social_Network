@@ -1,84 +1,137 @@
-let rerenderEntireTree = () => {
-  console.log('State is changed');
-}
+let store = {
+  _callSubscriber() { //вызвать(уведомить) подписчика
+    console.log('State is changed');
+  },
 
-  let state = {
+  _state: {
     profilePage: {
-      posts: [
-        { id: 1, post: 'Hi, how are you', likesCount: 5 },
-        { id: 2, post: 'Dimych', likesCount: 10 },
-        { id: 3, post: "It's my first post", likesCount: 15 }
+      posts: [{
+          id: 1,
+          post: 'Hi, how are you',
+          likesCount: 5
+        },
+        {
+          id: 2,
+          post: 'Dimych',
+          likesCount: 10
+        },
+        {
+          id: 3,
+          post: "It's my first post",
+          likesCount: 15
+        }
       ],
       newPostText: 'React'
 
     },
 
     dialogsPage: {
-      messages: [
-        { id: 1, message: 'Hi' },
-        { id: 2, message: 'Hello' },
-        { id: 3, message: 'Yo' },
-        { id: 4, message: 'How are you?' },
-        
+      messages: [{
+          id: 1,
+          message: 'Hi'
+        },
+        {
+          id: 2,
+          message: 'Hello'
+        },
+        {
+          id: 3,
+          message: 'Yo'
+        },
+        {
+          id: 4,
+          message: 'How are you?'
+        },
+
       ],
 
       newMessageText: 'React is cool',
 
-      dialogs: [
-        { id: 1, name: 'Andrey2', avatar: 'https://avavatar.ru/images/original/8/Q7OMzfTjG5ubGQx6.jpg' },
-        { id: 2, name: 'Dimych', avatar: 'https://avavatar.ru/images/original/1/TEFNRLzxxtrA8205.jpg'},
-        { id: 3, name: 'Aleksey', avatar: 'https://avavatar.ru/images/full/1/wgS4KQ8MVxQktf3k.jpg'}
+      dialogs: [{
+          id: 1,
+          name: 'Andrey2',
+          avatar: 'https://avavatar.ru/images/original/8/Q7OMzfTjG5ubGQx6.jpg'
+        },
+        {
+          id: 2,
+          name: 'Dimych',
+          avatar: 'https://avavatar.ru/images/original/1/TEFNRLzxxtrA8205.jpg'
+        },
+        {
+          id: 3,
+          name: 'Aleksey',
+          avatar: 'https://avavatar.ru/images/full/1/wgS4KQ8MVxQktf3k.jpg'
+        }
       ]
-    
+
     },
-    
+
     sidebar: {
-      friends: [
-      { id: 1, name: 'Andrey1', avatar: 'https://avavatar.ru/images/original/8/Q7OMzfTjG5ubGQx6.jpg' },
-      { id: 2, name: 'Dimych', avatar: 'https://avavatar.ru/images/original/1/TEFNRLzxxtrA8205.jpg'},
-      { id: 3, name: 'Aleksey', avatar: 'https://avavatar.ru/images/full/1/wgS4KQ8MVxQktf3k.jpg'}
-    ]
-  }
+      friends: [{
+          id: 1,
+          name: 'Andrey1',
+          avatar: 'https://avavatar.ru/images/original/8/Q7OMzfTjG5ubGQx6.jpg'
+        },
+        {
+          id: 2,
+          name: 'Dimych',
+          avatar: 'https://avavatar.ru/images/original/1/TEFNRLzxxtrA8205.jpg'
+        },
+        {
+          id: 3,
+          name: 'Aleksey',
+          avatar: 'https://avavatar.ru/images/full/1/wgS4KQ8MVxQktf3k.jpg'
+        }
+      ]
+    }
 
-  }
+  },
 
-  window.state = state;
+  getState() {
+    return this._state;
+  },
 
-  export let addPost = () => {
-   
+  addPost() {
+
     let newPost = {
       id: 5,
-      post: state.profilePage.newPostText,
+      post: this._state.profilePage.newPostText,
       likesCount: 0
     };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = '';
-    rerenderEntireTree(state);
-  }
+    this._state.profilePage.posts.push(newPost);
+    this._state.profilePage.newPostText = '';
+    this._callSubscriber(this._state);
+  },
 
-  export let updateNewPostText = (newText) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
-  }
+  updateNewPostText (newText) {
+    this._state.profilePage.newPostText = newText;
+    this._callSubscriber(this._state);
+  },
 
 
-  export let addMessage = () => {
+  addMessage() {
+    debugger
     let newMessage = {
       id: 6,
-      message: state.dialogsPage.newMessageText,
+      message: this._state.dialogsPage.newMessageText,
     };
-    state.dialogsPage.messages.push(newMessage);
-    state.dialogsPage.newMessageText = '';
-    rerenderEntireTree(state);
+    this._state.dialogsPage.messages.push(newMessage);
+    this._state.dialogsPage.newMessageText = '';
+    this._callSubscriber(this._state);
+  },
+
+
+  updateNewMessageText(newTextMessage) {
+    this._state.dialogsPage.newMessageText = newTextMessage;
+    this._callSubscriber(this._state);
+  },
+
+  subscribe(observer) {
+    this._callSubscriber = observer;
   }
 
-  export let updateNewMessageText = (newTextMessage) => {
-    state.dialogsPage.newMessageText = newTextMessage;
-    rerenderEntireTree(state);
-  }
+}
 
-  export const subscribe = (observer) => {
-    rerenderEntireTree = observer;
-  }
+ window.store = store;
 
-  export default state;
+export default store;

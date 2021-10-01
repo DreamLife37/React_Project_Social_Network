@@ -29,11 +29,14 @@ const App = (props) => {
               render={ () => <Dialogs 
                   /* dialogs={props.state.dialogsPage.dialogs} 
                   messages={props.state.dialogsPage.messages}/>}/> ниже более компактная запись */
+                  
                   dialogs={props.state.dialogsPage.dialogs}
                   messages={props.state.dialogsPage.messages} 
                   newMessageText={props.state.dialogsPage.newMessageText}
                   addMessage={props.addMessage}
-                  updateNewMessageText={props.updateNewMessageText}
+                  updateNewMessageText={props.updateNewMessageText} 
+                  
+    
               />}/>
 
         <Route path='/profile' 
