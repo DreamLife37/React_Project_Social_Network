@@ -11,19 +11,21 @@ const Dialogs = (props) => {
     console.log(props.dialogs);
     console.log(props.messages);
 
-     let dialogsElements = props.dialogs.map(d => <DialogItem avatar={d.avatar} name={d.name} id={d.id} />); 
+    let dialogsElements = props.dialogs.map(d => <DialogItem avatar={d.avatar} name={d.name} id={d.id} />); 
 
     let messagesElements = props.messages.map(m => <Messages message={m.message} />);
 
     let newMessageElement = React.createRef();
     
      let addMessage = () => {
-      props.addMessage();
+      //props.addMessage();
+      props.dispatch({type: 'ADD-MESSAGE'});
     } 
 
     let onMessageChange = () => {
         let text = newMessageElement.current.value;
-        props.updateNewMessageText(text);
+        //props.updateNewMessageText(text);
+        props.dispatch({type: 'UPDATE-NEW-TEXT-MESSAGE', newTextMessage: text})
     }
 
 

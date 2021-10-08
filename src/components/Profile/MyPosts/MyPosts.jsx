@@ -12,20 +12,21 @@ const MyPosts = (props) => {
   let newPostElement = React.createRef();
     
   let addPost = () => {
-    props.addPost();
-    //props.updateNewPostText('');   
+    //props.addPost(); 
+    props.dispatch({ type: 'ADD-POST' });
   }
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
-      props.updateNewPostText(text);
+     //props.updateNewPostText(text);
+     props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
   }
 
   return (
     <div className={s.postsBlock}>
       <h3>My Posts</h3>
       <div>
-        <div><textarea onChange={onPostChange} ref={newPostElement} 
+        <div><textarea onChange={onPostChange} ref={newPostElement} // при любой именении вызывается функция onPostChange
         value={props.newPostText}/></div>
         <div>
           <button onClick={addPost}>Add post</button></div>
