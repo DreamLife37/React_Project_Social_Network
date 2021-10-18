@@ -24,12 +24,10 @@ const App = (props) => {
         <Route path='/news' component={News}/>
         <Route path='/music' component={Music}/>
         <Route path='/settings' component={Settings}/>
-        
         <Route path='/dialogs' 
               render={ () => <Dialogs 
                   /* dialogs={props.state.dialogsPage.dialogs} 
                   messages={props.state.dialogsPage.messages}/>}/> ниже более компактная запись */
-                  
                   dialogs={props.state.dialogsPage.dialogs}
                   messages={props.state.dialogsPage.messages} 
                   newMessageText={props.state.dialogsPage.newMessageText}
@@ -46,5 +44,4 @@ const App = (props) => {
       </div>
     </BrowserRouter>);
 }
-
 export default App;
