@@ -2,9 +2,10 @@
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom'
-import store from './redux/state';
+import store from './redux/redux-store';
 
 let rerenderEntireTree = (state) => {
+  debugger
   ReactDOM.render(
     <React.StrictMode>
     <App state={state} 
@@ -16,5 +17,8 @@ let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(store.getState()); //здесь не биндим, тк метод мы вызываем сразу же от имени store
 
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderEntireTree(state);
+});
 
