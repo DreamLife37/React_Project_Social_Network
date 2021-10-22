@@ -1,30 +1,25 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { addMessageActionCreator, updateNewMessageActionCreator } from '../../redux/dialogs-reducer';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import Messages from './Message/Message';
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.dialogs.map(d => <DialogItem avatar={d.avatar} name={d.name} id={d.id} />);
+    let state = props.dialogsPage;
 
-    let messagesElements = props.messages.map(m => <Messages message={m.message} />);
+    let dialogsElements = state.dialogs.map(d => <DialogItem avatar={d.avatar} name={d.name} id={d.id} />);
+    let messagesElements = state.messages.map(m => <Messages message={m.message} />);
 
     //let newMessageElement = React.createRef();
 
     let onAddMessageClick = () => {
-        //props.addMessage();
-        props.dispatch(addMessageActionCreator());
+        props.addMessage();
     }
 
     let onMessageChange = (e) => {
-       
         let text = e.target.value;
-        //props.updateNewMessageText(text);
-        props.dispatch(updateNewMessageActionCreator(text))
+        props.updateNewMessageText(text);
     }
-
 
     return (
         <div className={s.dialogs}>
@@ -41,11 +36,10 @@ const Dialogs = (props) => {
             <div className={s.dialogsItems}>
                 <div><textarea placeholder='Enter your message'
                                onChange={onMessageChange} 
-                               value={props.newMessageText} /></div>
+                               value={state.newMessageText} /></div>
                 <div>
                     <button onClick={onAddMessageClick}>Send message</button></div>
             </div>
-
         </div>
     )
 }
