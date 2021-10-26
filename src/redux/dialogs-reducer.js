@@ -7,7 +7,6 @@ let initialState = {
     {id: 3,message: 'Yo'},
     {id: 4,message: 'How are you?'},],
   newMessageText: 'React is cool',
-
   dialogs: [
     {id: 1,name: 'Andrey2',avatar: 'https://avavatar.ru/images/original/8/Q7OMzfTjG5ubGQx6.jpg'},
     {id: 2,name: 'Dimych',avatar: 'https://avavatar.ru/images/original/1/TEFNRLzxxtrA8205.jpg'},
@@ -24,11 +23,9 @@ const dialogReducer = (state = initialState, action) => {
       state.messages.push(newMessage);
       state.newMessageText = '';
       return state;
-
     case UPDATE_NEW_POST_MESSAGE:
       state.newMessageText = action.newTextMessage;
       return state;
-
     default:
       return state;
   }
@@ -43,5 +40,4 @@ export const updateNewMessageActionCreator = (text) => {
     newTextMessage: text
   }
 }
-
 export default dialogReducer;

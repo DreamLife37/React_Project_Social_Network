@@ -20,7 +20,7 @@ const App = (props) => {
       <div className='app-wrapper'>
    
         <Header />
-        <Navbar state={props.state.sidebar} />
+        <Navbar />
         <div className='app-wrapper-content'>
         {/* <Route path='/dialogs' component={Dialogs}/>
         <Route path='/profile' component={Profile}/> */}
@@ -28,21 +28,11 @@ const App = (props) => {
         <Route path='/music' component={Music}/>
         <Route path='/settings' component={Settings}/>
         <Route path='/dialogs' 
-              render={ () => <DialogsContainer
-                  /* dialogs={props.state.dialogsPage.dialogs} 
-                  messages={props.state.dialogsPage.messages}/>}/> ниже более компактная запись */
-                 /*  dialogs={props.state.dialogsPage.dialogs}
-                  messages={props.state.dialogsPage.messages} 
-                  newMessageText={props.state.dialogsPage.newMessageText}
-                  dispatch={props.dispatch} */
-                  store={props.store}
-              />}/>
+              render={ () => <DialogsContainer />}/>
 
 
         <Route path='/profile' 
-              render={ () => <Profile store={props.store}
-                  
-              />}/>
+              render={ () => <Profile />}/>
            
         </div>
       </div>
