@@ -16,10 +16,11 @@ let rerenderEntireTree = (state) => {
   document.getElementById('root'));
 }
 
-rerenderEntireTree(store.getState()); //здесь не биндим, тк метод мы вызываем сразу же от имени store
+//rerenderEntireTree(store.getState()); //здесь не биндим, тк метод мы вызываем сразу же от имени store
 
-store.subscribe(() => {
+/* store.subscribe(() => {
   let state = store.getState();
   rerenderEntireTree(state);
-});
+}); */
 
+rerenderEntireTree();

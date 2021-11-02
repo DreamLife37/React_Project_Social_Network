@@ -21,5 +21,5 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts); //создание контейнерной компоненты с помощью функции connect позволяет локально подписываться, те там subscribe внутри локальный. И каждый раз когда у нас в state происходят изменения запускается функция mapStateToProps и формируется новый объект внутренности которого сравнивается со старыми
 export default MyPostsContainer;
