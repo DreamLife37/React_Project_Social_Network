@@ -34,21 +34,14 @@ const usersReducer = (state = initialState, action) => {
 
       case SET_USER: {
         return {...state, users: [...state.users, ...action.users]}
-
       }
 
-        default:
+      default:
             return state;
     }
 }
  
 export const followAC = (userID) => ({type: FOLLOW, userID})
-export const unfollowAC = (userID) => {
-    return {
-      type: UNFOLLOW,
-      userID
-    }
-}
+export const unfollowAC = (userID) => ({type: UNFOLLOW,userID})
 export const setUsersAC = (users) => ({type: SET_USER, users})
-
 export default usersReducer;
