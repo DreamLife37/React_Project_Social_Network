@@ -1,5 +1,3 @@
-
-
 import { userAPI } from "../api/api";
 
 const FOLLOW = 'FOLLOW';
@@ -128,12 +126,13 @@ export const getUsers = (currentPage, pageSize) => {
       dispatch(toggleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCount(data.totalCount));
-      dispatch(setCurrentPage(currentPage))
+      //dispatch(setCurrentPage(currentPage))
     });
   }
 }
 
 export const follow = (userId) => {
+  debugger
   return (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
                                 userAPI.follow(userId).then(response => {
@@ -145,7 +144,11 @@ export const follow = (userId) => {
   }
 }
 
+
+
+
 export const unfollow = (userId) => {
+  debugger
   return (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
     userAPI.unfollow(userId)
@@ -157,7 +160,5 @@ export const unfollow = (userId) => {
         })
   }
 }
-
-
 
 export default usersReducer;

@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import { deleteFollow, postUnfollow, userAPI } from '../../api/api';
 
 let Users = (props) => {
+
+
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -51,6 +53,8 @@ let Users = (props) => {
                                         props.toggleFollowingProgress(false, u.id);
                                     }) */
                                 }}>Follow</button>}
+
+                                
                     </div>
                 </span>
                 <span>
