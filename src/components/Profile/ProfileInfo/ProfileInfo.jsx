@@ -6,7 +6,6 @@ import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
 
-  debugger
   if (!props.profile) {
     return <Preloader />
   }
