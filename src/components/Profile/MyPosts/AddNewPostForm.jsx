@@ -1,9 +1,9 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import { required } from '../../../utils/validators/validators';
+import { TextareaPost } from '../../common/FormsControls/FormsControls';
 
-
-
- function AddNewPostForm(props) {
+function AddNewPostForm(props) {
 
     const onSubmit = (
         (values, { setSubmitting }) => {
@@ -14,31 +14,23 @@ import { Field, Form, Formik } from 'formik';
 
     return <div>
         <Formik
-            initialValues={{ newPostText: '' }}
 
-            validate={values => {
-                const errors = {};
-                if (!values.newPostText) {
-                    errors.newPostText = 'Обязательно';
-                } else if (values.newPostText.length < 3) {
-                    errors.newPostText = 'Введите больше символов';
-                }
-                return errors;
+            initialValues={{
+                newPostText: '',
             }}
-
             onSubmit={onSubmit}
         >
-            {({ isSubmitting, errors, touched }) => (
+            {({ errors, touched, isValidating, isSubmitting }) => (
                 <Form>
-                    <Field type="text" name="newPostText" />
-                    {touched.newPostText && errors.newPostText && <p>{errors.newPostText}</p>}
-                    <button type="submit" disabled={isSubmitting}>
-                        Send
-                    </button>
+                    <p><label htmlFor="newPostText">New Post:</label>
+                        <Field name="newPostText" validate={required} placeholder={'Enter your post'} component={TextareaPost} /> </p>
+                    {/*  {errors.newPostText && touched.newPostText && <div>{errors.newPostText}</div>} */}
+
+                    <button type="submit" disabled={isValidating}>Send</button>
                 </Form>
             )}
         </Formik>
     </div>
-} 
+};
 
-export default AddNewPostForm 
+export default AddNewPostForm

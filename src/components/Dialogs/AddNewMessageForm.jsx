@@ -1,5 +1,9 @@
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import { required } from '../../utils/validators/validators';
+import { TextareaMessage } from '../common/FormsControls/FormsControls';
+import s from '../common/FormsControls/FormsControls.module.css'
+
 
 function AddNewMessageForm(props) {
 
@@ -10,34 +14,26 @@ function AddNewMessageForm(props) {
         }
     )
 
-    return (<div>
+    return <div>
         <Formik
-            initialValues={{ newMessageText: '' }}
 
-            validate={values => {
-                const errors = {};
-                if (!values.newMessageText) {
-                    errors.newMessageText = 'Обязательно';
-                } else if (values.newMessageText.length < 3) {
-                    errors.newMessageText = 'Введите больше символов';
-                }
-                return errors;
+            initialValues={{
+                newMessageText: '',
             }}
-
             onSubmit={onSubmit}
         >
-            {({ isSubmitting, errors, touched }) => (
+            {({ errors, touched, isValidating, isSubmitting }) => (
                 <Form>
-                    <Field type="textarea" name="newMessageText" />
-                    {touched.newMessageText && errors.newMessageText && <p>{errors.newMessageText}</p>}
-                    <button type="submit" disabled={isSubmitting}>
-                        Send
-                    </button>
+                    <p><label htmlFor="newMessageText">New Message:</label>
+                        <Field name="newMessageText" validate={required} component={TextareaMessage} placeholder={'Enter your message'} className={(errors.newMessageText && touched.newMessageText) ? s.error : ''} /> </p>
+                    {/*  {errors.newMessageText && touched.newMessageText && <div>{errors.newMessageText}</div>} */}
+
+                    <button type="submit" disabled={isValidating}>Send</button>
                 </Form>
             )}
         </Formik>
     </div>
-    )
-}
+};
 
 export default AddNewMessageForm
+

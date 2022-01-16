@@ -1,67 +1,37 @@
 import React from 'react';
-import { Formik } from 'formik';
-import * as yup from 'yup';
+import { Formik, Form, Field } from 'formik';
+import { maxLengthCreator, validateEmail } from '../../utils/validators/validators';
+import s from '../common/FormsControls/FormsControls.module.css'
+import { CustomInput, TextareaLogin } from '../common/FormsControls/FormsControls';
 
-const Login = () => {
-
-    const validationsSchema = yup.object().shape({
-        name: yup.string().typeError('Должно быть строкой').required('Обязательно'),
-        password: yup.string().typeError('Должно быть строкой').required('Обязательно')
-    })
-
-    return <div>
-        {/* <h1>LOGIN</h1>
-        <div>
-            <input placeholder={"Login"} />
-        </div>
-        <div>
-            <input placeholder={"Password"} />
-        </div>
-        <div>
-            <input type={"checkbox"} /> remember me
-        </div> */}
+const Login = () => (
+    <div>
+        <h1>Signup</h1>
         <Formik
             initialValues={{
-                name: '',
-                password: ''
+                password: '',
+                email: '',
             }}
-            onSubmit={(values) => { console.log(values) }}
-            validationSchema={validationsSchema}
+            onSubmit={values => {
+                
+                console.log(values);
+            }}
         >
-            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, dirty, isValid }) => (
-                <div>
-                    <p>
-                        <label htmlFor={'Name'}>Login</label>
-                        <input
-                            type={'text'}
-                            name={'name'}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.name}
-                        />
-                    </p>
-                    {touched.name && errors.name && <p>{errors.name}</p>}
-                    <p>
-                        <label htmlFor={'Password'}>Password</label>
-                        <input
-                            type={'password'}
-                            name={'password'}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.password}
-                        />
-                    </p>
-                    {touched.password && errors.password && <p>{errors.password}</p>}
-                    <button
-                        disabled={!isValid && !dirty}
-                        onClick={handleSubmit}
-                        type={'submit'}
+            {({ errors, touched, isValidating }) => (
+                <Form>
+                    <p><label htmlFor="email">Email:</label>
+                        <Field name="email" validate={validateEmail} component={CustomInput} type='text' placeholder={'andrey@gmail.com'} class={(errors.email && touched.email) ? s.error : ''} /> </p>
+                    {/* {errors.email && touched.email && <div>{errors.email}</div>} */}
 
-                    >Login</button>
-                </div>
+                    <p><label htmlFor="password">Password:</label>
+                        <Field name="password" type='password' component={CustomInput} validate={maxLengthCreator(5)} /> </p>
+                    {/* {errors.password && touched.password && <div>{errors.password}</div>} */}
+
+                    <button type="submit">Submit</button>
+                </Form>
             )}
         </Formik>
     </div>
-}
+);
 
-export default Login;
+export default Login
