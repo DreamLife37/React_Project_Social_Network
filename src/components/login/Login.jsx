@@ -2,20 +2,34 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { maxLengthCreator, validateEmail } from '../../utils/validators/validators';
 import s from '../common/FormsControls/FormsControls.module.css'
-import { CustomInput, TextareaLogin } from '../common/FormsControls/FormsControls';
+import { CustomInput } from '../common/FormsControls/FormsControls';
+import { connect } from 'react-redux';
+import { login } from '../../redux/auth-reducer';
+import { Redirect } from 'react-router-dom';
 
-const Login = () => (
-    <div>
+function Login(props) {
+    //const Login = (props) => (
+
+    if (props.isAuth) {
+        return <Redirect to={"/profile"} />
+    }
+
+    return <div>
         <h1>Signup</h1>
+
+
+
         <Formik
             initialValues={{
                 password: '',
                 email: '',
             }}
             onSubmit={values => {
-                
+                props.login(values.email, values.password)
                 console.log(values);
             }}
+
+
         >
             {({ errors, touched, isValidating }) => (
                 <Form>
@@ -24,7 +38,7 @@ const Login = () => (
                     {/* {errors.email && touched.email && <div>{errors.email}</div>} */}
 
                     <p><label htmlFor="password">Password:</label>
-                        <Field name="password" type='password' component={CustomInput} validate={maxLengthCreator(5)} /> </p>
+                        <Field name="password" component={CustomInput} validate={maxLengthCreator(5)} /> </p>
                     {/* {errors.password && touched.password && <div>{errors.password}</div>} */}
 
                     <button type="submit">Submit</button>
@@ -32,6 +46,11 @@ const Login = () => (
             )}
         </Formik>
     </div>
-);
 
-export default Login
+}
+
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, { login })(Login)

@@ -52,6 +52,7 @@ function getStylesText(errors, fieldName) {
 }
 
 export function CustomInput({ field, form: { errors } }) {
+    debugger
     return <div>
         <input {...field} style={getStyles(errors, field.name)} />
         <p style={getStylesText(errors, field.name)}><ErrorMessage name={field.name} /></p>
